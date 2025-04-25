@@ -2,6 +2,7 @@ package tunnel
 
 import (
 	"sync"
+	"time"
 
 	"github.com/metacubex/mihomo/adapter/outboundgroup"
 	"github.com/metacubex/mihomo/constant/provider"
@@ -31,7 +32,7 @@ func HealthCheck(name string) {
 		wg.Add(1)
 
 		go func(provider provider.ProxyProvider) {
-			provider.HealthCheck()
+			provider.HealthCheck(time.Now())
 
 			wg.Done()
 		}(pr)
